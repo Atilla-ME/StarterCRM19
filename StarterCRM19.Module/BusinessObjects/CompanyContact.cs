@@ -15,6 +15,8 @@ using System.Text;
 namespace StarterCRM19.Module.BusinessObjects
 {
     [DefaultClassOptions]
+    [ImageName("BO_Lead")]  //adds an in-built image to CompanyContacts visual
+    [DefaultProperty("FullName")]  //Gives the specified property's value when the object is called. Default first property
  
     public class CompanyContact : BaseObject
     { 
@@ -25,7 +27,7 @@ namespace StarterCRM19.Module.BusinessObjects
         public override void AfterConstruction()
         {
             base.AfterConstruction();
-            // Place your initialization code here (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112834.aspx).
+            
         }
 
 
@@ -65,6 +67,16 @@ namespace StarterCRM19.Module.BusinessObjects
         {
             get => company;
             set => SetPropertyValue(nameof(Company), ref company, value);
+        }
+
+        [VisibleInDetailView(false)] //this property won't be shown on DetailView
+        [VisibleInListView(false)]  //this property won't be shown on ListView
+        public string FullName
+        {
+            get
+            {
+                return ObjectFormatter.Format("{FirstName} {LastName}", this, EmptyEntriesMode.RemoveDelimiterWhenEntryIsEmpty);
+            }
         }
     }
 }

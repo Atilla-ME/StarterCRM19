@@ -35,6 +35,8 @@ namespace StarterCRM19.Module.BusinessObjects
         string website;
         string companyName;
 
+        [RuleRequiredField]  //can not be saved w/o a name
+        [RuleUniqueValue]   //there can not be more than 1 company having same CompanyName
         public string CompanyName
         {
             get => companyName;
