@@ -28,6 +28,7 @@ namespace StarterCRM19.Module.BusinessObjects
         }
 
 
+        bool shipToBilling;
         string shippingAddress;
         string billingAddress;
         string phoneNumber;
@@ -61,11 +62,27 @@ namespace StarterCRM19.Module.BusinessObjects
             set => SetPropertyValue(nameof(BillingAddress), ref billingAddress, value);
         }
 
-        
+
         public string ShippingAddress
         {
             get => shippingAddress;
             set => SetPropertyValue(nameof(ShippingAddress), ref shippingAddress, value);
+        }
+
+        
+        public bool ShipToBilling
+        {
+            get => shipToBilling;
+            set => SetPropertyValue(nameof(ShipToBilling), ref shipToBilling, value);
+        }
+
+        [Association("Company-CompanyContacts")]
+        public XPCollection<CompanyContact> CompanyContacts
+        {
+            get
+            {
+                return GetCollection<CompanyContact>(nameof(CompanyContacts));
+            }
         }
 
     }
