@@ -45,11 +45,11 @@ namespace StarterCRM19.Module.Controllers
 
         private void actionCreateMeeting_CustomizePopupWindowParams(object sender, CustomizePopupWindowParamsEventArgs e)
         {
-            Company company = (Company)View.CurrentObject;
-            IObjectSpace objectSpace = View.ObjectSpace.CreateNestedObjectSpace();
-            Meeting meeting = objectSpace.CreateObject<Meeting>();
-            meeting.Company = objectSpace.GetObject<Company>(company);
-            e.View = Application.CreateDetailView(objectSpace, meeting);
+            Company company = (Company)View.CurrentObject;  //Get the object from the view the application is in
+            IObjectSpace objectSpace = View.ObjectSpace.CreateNestedObjectSpace();   //object space is the connection with db. 
+            Meeting meeting = objectSpace.CreateObject<Meeting>();    //Create a meeting in the Objectspace
+            meeting.Company = objectSpace.GetObject<Company>(company);   //Get the company from Objectspace using the object we got from the view. Assign the company to meeting's Company property 
+            e.View = Application.CreateDetailView(objectSpace, meeting);   //application creates a view based on given ObjectSpace and object and shows as pop up window
         }
     }
 }
