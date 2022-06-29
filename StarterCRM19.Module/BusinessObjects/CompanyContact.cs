@@ -1,5 +1,6 @@
 ﻿using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp;
+using DevExpress.ExpressApp.ConditionalAppearance;
 using DevExpress.ExpressApp.DC;
 using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.Base;
@@ -9,6 +10,7 @@ using DevExpress.Xpo;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 
@@ -17,6 +19,7 @@ namespace StarterCRM19.Module.BusinessObjects
     [DefaultClassOptions]
     [ImageName("BO_Lead")]  //adds an in-built image to CompanyContacts visual
     [DefaultProperty("FullName")]  //Gives the specified property's value when the object is called. Default first property
+    [Appearance("ActiveContact", Criteria ="Active=true",TargetItems ="*", FontStyle = FontStyle.Bold)]  //when user active checkbox is ticked makes all user property values' fontstyles bold
  
     public class CompanyContact : BaseObject
     { 
@@ -31,6 +34,7 @@ namespace StarterCRM19.Module.BusinessObjects
         }
 
 
+        bool active;
         Company company;
         string emailAddress;
         string phoneNumber;
@@ -61,7 +65,7 @@ namespace StarterCRM19.Module.BusinessObjects
             set => SetPropertyValue(nameof(EmailAddress), ref emailAddress, value);
         }
 
-        
+
         [Association("Company-CompanyContacts")]
         public Company Company
         {
@@ -77,6 +81,13 @@ namespace StarterCRM19.Module.BusinessObjects
             {
                 return ObjectFormatter.Format("{FirstName} {LastName}", this, EmptyEntriesMode.RemoveDelimiterWhenEntryIsEmpty);
             }
+        }
+
+        [ImmediatePostData]
+        public bool Active
+        {
+            get => active;
+            set => SetPropertyValue(nameof(Active), ref active, value);
         }
     }
 }

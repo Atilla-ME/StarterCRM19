@@ -1,5 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Application Title="StarterCRM19">
+  <BOModel>
+    <Class Name="StarterCRM19.Module.BusinessObjects.Company">
+      <AppearanceRules>
+        <AppearanceRule Id="@e35325b9-9a15-474f-817f-6dd9fe67c54f" Criteria="[ShipToBilling] = True" TargetItems="ShippingAddress" Visibility="Hide" IsNewNode="True" />
+      </AppearanceRules>
+    </Class>
+  </BOModel>
   <NavigationItems>
     <Items>
       <Item Id="Default">

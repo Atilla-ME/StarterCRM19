@@ -71,7 +71,7 @@ namespace StarterCRM19.Module.BusinessObjects
             set => SetPropertyValue(nameof(ShippingAddress), ref shippingAddress, value);
         }
 
-        
+        [ImmediatePostData] //Normally when a property calue is changed, it takes effect when the property editor loses focus. But with this annotation property value change is watched. Effect instantly takes place as soon as the value is changed
         public bool ShipToBilling
         {
             get => shipToBilling;
