@@ -33,6 +33,7 @@ namespace StarterCRM19.Module.BusinessObjects
         CompanyContact primaryContact;
         Company company;
 
+        [ImmediatePostData]
         public Company Company
         {
             get => company;
