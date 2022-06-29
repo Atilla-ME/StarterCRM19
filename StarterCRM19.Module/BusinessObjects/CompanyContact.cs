@@ -19,7 +19,7 @@ namespace StarterCRM19.Module.BusinessObjects
     [DefaultClassOptions]
     [ImageName("BO_Lead")]  //adds an in-built image to CompanyContacts visual
     [DefaultProperty("FullName")]  //Gives the specified property's value when the object is called. Default first property
-    [Appearance("ActiveContact", Criteria ="Active=true",TargetItems ="*", FontStyle = FontStyle.Bold)]  //when user active checkbox is ticked makes all user property values' fontstyles bold
+    [Appearance("ActiveContact", Criteria ="Active=true",TargetItems ="*", FontStyle = FontStyle.Bold)]  //when company contact active checkbox is ticked makes all user property values' fontstyles bold
  
     public class CompanyContact : BaseObject
     { 
@@ -27,10 +27,10 @@ namespace StarterCRM19.Module.BusinessObjects
             : base(session)
         {
         }
-        public override void AfterConstruction()
+        public override void AfterConstruction()  //behaves like .net constructor. Only runs after creation of instance of an object
         {
             base.AfterConstruction();
-            
+            Active = true;   //to make active after creation of contact
         }
 
 
